@@ -157,6 +157,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function startTimer() {
+        setInterval(() => {
+            if (!isGameOver) {
+                time++;
+                timer.innerHTML = time;
+            }
+        }, 1000);
+        removeEventListener('click', startTimer);
+    }
+    window.addEventListener('click', startTimer);
+
     emojiBtn.addEventListener('click', () => {
         location.reload();
     });
