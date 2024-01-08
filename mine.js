@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const emojiBtn = document.querySelector('.emoji-btn');
 
     let width = 10;
-    let bombAmount = 10;
+    let bombAmount = 5;
     let flags = 0;
     let cells = [];
     let isGameOver = false;
@@ -37,22 +37,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        for (let i = 0; i < cells.length; i++) {
+        for (let k = 0; k < cells.length; k++) {
             let bombCount = 0;
 
-            if (cells[i].classList.contains('normal')) {
-                for (let y = -1; y <= 1; y++) {
-                    for (let x = -1; x <= 1; x++) {
-                        const tcell = cells[i + x + y * width];
-                        if (tcell && tcell.classList.contains('bomb')) {
-                            bombCount++;
+            if (cells[k].classList.contains('normal')) {
+                for (let i = -1; i <= 1; i++) {
+                    for (let j = -1; j <= 1; j++) {
+                        //border check
+                        let y = parseInt(k / width);
+                        let x = parseInt(k % width);
+                        if (x + j >= 0 && x + j < width && y + i >= 0 && y + i < width) {
+                            let cell = document.getElementById((x + j) + (y + i) * width);
+                            if (cell.classList.contains('bomb'))
+                                bombCount++;
                         }
                     }
                 }
             } else {
-                cells[i].setAttribute('data', -1);
+                cells[k].setAttribute('data', -1);
             }
-            cells[i].setAttribute('data', bombCount);
+            cells[k].setAttribute('data', bombCount);
         }
     }
     createBoard();
