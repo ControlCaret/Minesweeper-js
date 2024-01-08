@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cells[k].classList.contains('normal')) {
                 for (let i = -1; i <= 1; i++) {
                     for (let j = -1; j <= 1; j++) {
-                        //border check
                         let y = parseInt(k / width);
                         let x = parseInt(k % width);
                         if (x + j >= 0 && x + j < width && y + i >= 0 && y + i < width) {

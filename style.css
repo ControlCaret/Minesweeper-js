@@ -7,16 +7,15 @@ body,
 html {
     font-family: Consolas, monospace;
     font-size: 1em;
+    padding-top: 10px;
+    font-weight: bolder;
 }
 
-.title {
-    width: 250px;
-    height: 25px;
-    display: flex;
-    background: #245DDA;
-    color: white;
-    padding: 5px 0 0 5px;
-    margin: 5px 0;
+.window {
+    width: auto;
+    height: auto;
+    background: lightgray;
+    padding: 0 5px 5px 5px;
 }
 
 .container {
@@ -25,18 +24,26 @@ html {
     flex-direction: column;
 }
 
+.title {
+    width: 261px;
+    height: 25px;
+    display: flex;
+    background: #245DDA;
+    color: white;
+    padding: 5px 0 0 5px;
+}
+
 .top {
     width: 256px;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #c1bfc0;
     border: 3px solid white;
     border-top-color: gray;
     border-left-color: gray;
     box-sizing: border-box;
-    margin-bottom: 5px;
+    margin: 5px 0;
 }
 
 .flag-box,
@@ -44,7 +51,8 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
+    font-size: 1.5em;
+    width: 60px;
     height: 40px;
     background: white;
     border: 3px solid white;
