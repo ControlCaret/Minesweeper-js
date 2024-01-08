@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const timer = document.querySelector('#timer');
     const emojiBtn = document.querySelector('.emoji-btn');
 
-    let width = 10;
-    let bombAmount = 5;
+    let width = 9;
+    let bombAmount = 10;
     let flags = 0;
     let cells = [];
     let isGameOver = false;
@@ -169,6 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', startTimer);
 
     emojiBtn.addEventListener('click', () => {
-        location.reload();
+        isGameOver = false;
+        time = 0;
+        board.innerHTML = '';
+        cells = [];
+        // TODO: Remove timer event listener
+        createBoard();
     });
 });

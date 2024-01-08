@@ -8,14 +8,19 @@
 </head>
 <body>
     <div class="container">
-        <div class="title">Minesweeper</div>
         <div class="window">
+            <div class="title">Minesweeper</div>
             <div class="top">
                 <div class="flag-box"><span id="flags-left">0</span></div>
                 <button class="emoji-btn">🙂</button>
                 <div class="timer-box"><span id="timer">0</span></div>
             </div>
             <div class="board"></div>
+            <select name="level" id="level-select">
+                <option value="easy">Easy (9x9, 10)</option>
+                <option value="medium">Medium (16x16, 40)</option>
+                <option value="hard">Hard (30x30, 180)</option>
+            </select>
         </div>
     </div>
     <script src="mine.js"></script>
