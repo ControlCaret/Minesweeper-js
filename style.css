@@ -5,25 +5,38 @@
 
 body,
 html {
+    font-family: Consolas, monospace;
     font-size: 1em;
+}
+
+.title {
+    width: 250px;
+    height: 25px;
+    display: flex;
+    background: #245DDA;
+    color: white;
+    padding: 5px 0 0 5px;
+    margin: 5px 0;
 }
 
 .container {
     display: flex;
     align-items: center;
     flex-direction: column;
-
-    background-color: aqua;
 }
 
 .top {
-    width: 250px;
+    width: 256px;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background: greenyellow;
+    background: #c1bfc0;
+    border: 3px solid white;
+    border-top-color: gray;
+    border-left-color: gray;
+    box-sizing: border-box;
+    margin-bottom: 5px;
 }
 
 .flag-box,
@@ -31,10 +44,13 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 30px;
-    border: 5px solid black;
-    background: magenta;
+    width: 50px;
+    height: 40px;
+    background: white;
+    border: 3px solid white;
+    border-top-color: gray;
+    border-left-color: gray;
+    box-sizing: border-box;
 }
 
 .emoji-btn {
@@ -44,10 +60,11 @@ html {
     width: 40px;
     height: 40px;
     margin: 0 10px;
-    border: 5px solid black;
-    outline: none;
+    border: 3px solid gray;
+    border-top-color: white;
+    border-left-color: white;
+    box-sizing: border-box;
     font-size: 1.5em;
-    background: orange;
 }
 
 .board {
@@ -55,22 +72,27 @@ html {
     height: 250px;
     display: flex;
     flex-wrap: wrap;
-    border: 0px solid black;
-    background: blue;
+    border: 3px solid white;
+    border-top-color: gray;
+    border-left-color: gray;
 }
 
-.board cell {
+cell {
     width: 25px;
     height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0;
-    margin: 0;
+    border: 3px solid gray;
+    border-top-color: white;
+    border-left-color: white;
+    box-sizing: border-box;
 }
 
 .clicked {
     background: #C0C0C0;
+    border: 1px solid gray;
+    box-sizing: border-box;
 }
 
 .one {
