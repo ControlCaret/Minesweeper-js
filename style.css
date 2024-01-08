@@ -5,7 +5,6 @@
 
 body,
 html {
-    font-family: Consolas, monospace;
     font-size: 1em;
 }
 
@@ -56,7 +55,7 @@ html {
     height: 250px;
     display: flex;
     flex-wrap: wrap;
-    border: 5px solid black;
+    border: 0px solid black;
     background: blue;
 }
 
@@ -68,6 +67,40 @@ html {
     align-items: center;
     padding: 0;
     margin: 0;
+}
 
-    background: red;
+.clicked {
+    background: #C0C0C0;
+}
+
+.one {
+    color: #0000ff;
+}
+
+.two {
+    color: #008000;
+}
+
+.three {
+    color: #ff0000;
+}
+
+.four {
+    color: #000084;
+}
+
+.five {
+    color: #840000;
+}
+
+.six {
+    color: #008484;
+}
+
+.seven {
+    color: #000008;
+}
+
+.eight {
+    color: #858585
 }
