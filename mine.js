@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = 10;
     let bombAmount = 10;
     let flags = 0;
-    let squares = [];
+    let cells = [];
     let isGameOver = false;
     let time = 0;
 
@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const tempArray = emptyArray.concat(bombsArray);
         const shuffledArray = tempArray.sort(() => Math.random() - 0.5);
 
-        let cells = [];
+        emojiBtn.innerHTML = '🙂';
+        flagsLeft.innerHTML = bombAmount;
 
         for (let i = 0; i < width * width; i++) {
             const cell = document.createElement('cell');
@@ -29,6 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
             cell.addEventListener('click', function (e) {
                 click(cell);
             });
+
+            cell.oncontextmenu = function (e) {
+                e.preventDefault();
+                addFlag(cell);
+            }
         }
 
         for (let i = 0; i < cells.length; i++) {
@@ -59,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cell.classList.contains('clicked') || cell.classList.contains('flag'))
             return;
         if (cell.classList.contains('bomb'))
-            return;
+            gameOver();
         else {
             let bombCount = cell.getAttribute('data');
             if (bombCount != 0) {
@@ -90,18 +96,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function floodFill(currentCell) {
         setTimeout(() => {
-        for (let i = -1; i <= 1; i++) {
-            for (let j = -1; j <= 1; j++) {
-                let y = parseInt(currentCell / width);
-                let x = parseInt(currentCell % width);
-                if (x + j >= 0 && x + j < width && y + i >= 0 && y + i < width) {
-                    let cell = document.getElementById((x + j) + (y + i) * width);
-                    if (!cell.classList.contains('clicked')) {
-                        click(cell);
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    let y = parseInt(currentCell / width);
+                    let x = parseInt(currentCell % width);
+                    if (x + j >= 0 && x + j < width && y + i >= 0 && y + i < width) {
+                        let cell = document.getElementById((x + j) + (y + i) * width);
+                        if (!cell.classList.contains('clicked')) {
+                            click(cell);
+                        }
                     }
                 }
             }
-        }
-    }, 10);
+        }, 10);
     }
+
+    function addFlag(cell) {
+        if (isGameOver)
+            return;
+        if (!cell.classList.contains('clicked') && (flags < bombAmount)) {
+            if (!cell.classList.contains('flag')) {
+                cell.classList.add('flag');
+                cell.innerHTML = '🚩';
+                flags++;
+                flagsLeft.innerHTML = bombAmount - flags;
+                checkWin();
+            } else {
+                cell.classList.remove('flag');
+                cell.innerHTML = '';
+                flags--;
+                flagsLeft.innerHTML = bombAmount - flags;
+            }
+        }
+    }
+
+    function checkWin() {
+        let counts = 0;
+
+        for (let i = 0; i < cells.length; i++) {
+            if (cells[i].classList.contains('flag') && cells[i].classList.contains('bomb')) {
+                counts++;
+            }
+            if (counts === bombAmount) {
+                isGameOver = true;
+                emojiBtn.innerHTML = '😎';
+            }
+        }
+    }
+
+    function gameOver() {
+        isGameOver = true;
+        emojiBtn.innerHTML = '😫';
+        cells.forEach(cell => {
+            if (cell.classList.contains('bomb')) {
+                cell.innerHTML = '💣';
+            }
+        });
+    }
+
+    emojiBtn.addEventListener('click', () => {
+        location.reload();
+    });
 });
