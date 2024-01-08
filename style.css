@@ -6,25 +6,23 @@
 body,
 html {
     font-family: Consolas, monospace;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 .container {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    flex-direction: column;
 
     background-color: aqua;
 }
 
 .top {
-    width: 500px;
-    height: 100px;
+    width: 250px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
 
     background: greenyellow;
 }
@@ -34,36 +32,42 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-
+    width: 100px;
+    height: 30px;
+    border: 5px solid black;
     background: magenta;
 }
 
-.reset-btn {
+.emoji-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    border: 5px solid black;
+    outline: none;
+    font-size: 1.5em;
     background: orange;
 }
 
-.grid {
-    width: 500px;
-    height: 500px;
+.board {
+    width: 250px;
+    height: 250px;
     display: flex;
     flex-wrap: wrap;
-
+    border: 5px solid black;
     background: blue;
 }
 
-.grid div {
-    width: 50px;
-    height: 50px;
+.board cell {
+    width: 25px;
+    height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    padding: 0;
+    margin: 0;
 
     background: red;
 }
