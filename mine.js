@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             board.appendChild(cell);
             cells.push(cell);
 
-            cell.addEventListener('click', function (e) {
+            cell.addEventListener('click', () => {
                 click(cell);
             });
 
@@ -157,23 +157,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function startTimer() {
-        setInterval(() => {
-            if (!isGameOver) {
-                time++;
-                timer.innerHTML = time;
-            }
-        }, 1000);
-        removeEventListener('click', startTimer);
-    }
-    window.addEventListener('click', startTimer);
-
     emojiBtn.addEventListener('click', () => {
         isGameOver = false;
         time = 0;
+        timer.innerHTML = time;
         board.innerHTML = '';
         cells = [];
-        // TODO: Remove timer event listener
         createBoard();
     });
 });
