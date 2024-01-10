@@ -7,15 +7,7 @@ body,
 html {
     font-family: Consolas, monospace;
     font-size: 1em;
-    padding-top: 10px;
     font-weight: bolder;
-}
-
-.window {
-    width: auto;
-    height: auto;
-    background: lightgray;
-    padding: 0 5px 5px 5px;
 }
 
 .container {
@@ -24,17 +16,29 @@ html {
     flex-direction: column;
 }
 
+.window {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: lightgray;
+    margin: 5px;
+    padding: 0;
+}
+
 .title {
-    width: 261px;
+    width: 240px;
     height: 25px;
     display: flex;
     background: #245DDA;
     color: white;
+    margin: 0;
     padding: 5px 0 0 5px;
 }
 
 .top {
-    width: 256px;
+    width: 231px;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -68,6 +72,7 @@ html {
     width: 40px;
     height: 40px;
     margin: 0 10px;
+    outline: 0;
     border: 3px solid gray;
     border-top-color: white;
     border-left-color: white;
@@ -76,8 +81,8 @@ html {
 }
 
 .board {
-    width: 250px;
-    height: 250px;
+    width: 225px;
+    height: 225px;
     display: flex;
     flex-wrap: wrap;
     border: 3px solid white;
@@ -101,6 +106,14 @@ cell {
     background: #C0C0C0;
     border: 1px solid gray;
     box-sizing: border-box;
+}
+
+#level-select {
+    width: 150px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
 }
 
 .one {
