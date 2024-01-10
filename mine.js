@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const title = document.querySelector('.title');
+    const top = document.querySelector('.top');
     const board = document.querySelector('.board');
     const flagsLeft = document.querySelector('#flags-left');
     const timer = document.querySelector('#timer');
     const emojiBtn = document.querySelector('.emoji-btn');
+    const levelSelect = document.querySelector('#level-select');
 
     let width = 9;
     let bombAmount = 10;
@@ -161,6 +164,20 @@ document.addEventListener('DOMContentLoaded', () => {
         isGameOver = false;
         time = 0;
         timer.innerHTML = time;
+        if (levelSelect.value === 'easy') {
+            width = 9;
+            bombAmount = 10;
+        } else if (levelSelect.value === 'medium') {
+            width = 16;
+            bombAmount = 40;
+        } else if (levelSelect.value === 'hard') {
+            width = 30;
+            bombAmount = 180;
+        }
+        title.style.width = 25 * width + 15 + 'px';
+        top.style.width = 25 * width + 6 + 'px';
+        board.style.width = 25 * width + 'px';
+        board.style.height = 25 * width + 'px';
         board.innerHTML = '';
         cells = [];
         createBoard();
