@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let cells = [];
     let isGameOver = false;
     let time = 0;
+    let isFirstClick = true;
 
     function createBoard() {
         const bombsArray = Array(bombAmount).fill('bomb');
@@ -160,8 +161,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    board.addEventListener('click', () => {
+        if (isFirstClick) {
+            isFirstClick = false;
+            let timerInterval = setInterval(() => {
+                time++;
+                timer.innerHTML = time;
+                if (isGameOver) {
+                    clearInterval(timerInterval);
+                }
+            }, 1000);
+        }
+    });
+
     emojiBtn.addEventListener('click', () => {
         isGameOver = false;
+        isFirstClick = true;
         time = 0;
         timer.innerHTML = time;
         if (levelSelect.value === 'easy') {
