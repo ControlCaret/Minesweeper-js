@@ -58,8 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 }
-            } else {
-                cells[k].setAttribute('data', -1);
             }
             cells[k].setAttribute('data', bombCount);
         }
@@ -194,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bombAmount = 40;
         } else if (levelSelect.value === 'hard') {
             width = 30;
-            height = 18;
+            height = 16;
             bombAmount = 99;
         }
         title.style.width = 25 * width + 15 + 'px';
@@ -202,6 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
         board.style.width = 25 * width + 'px';
         board.style.height = 25 * height + 'px';
         board.innerHTML = '';
+        boardArray = [];
+        bombArray = [];
         cells = [];
         createBoard();
     });
