@@ -178,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isGameOver = false;
         isFirstClick = true;
         time = 0;
+        flags = 0;
         timer.innerHTML = time;
         if (levelSelect.value === 'easy') {
             width = 9;
