@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const levelSelect = document.querySelector('#level-select');
 
     let width = 9;
+    let height = 9;
     let bombAmount = 10;
     let flags = 0;
     let cells = [];
@@ -16,18 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let isFirstClick = true;
 
     function createBoard() {
-        const bombsArray = Array(bombAmount).fill('bomb');
-        const emptyArray = Array(width * width - bombAmount).fill('normal');
-        const tempArray = emptyArray.concat(bombsArray);
-        const shuffledArray = tempArray.sort(() => Math.random() - 0.5);
+        let boardArray = Array(width * height - bombAmount).fill('normal');
+        let bombArray = Array(bombAmount).fill('bomb');
+        boardArray = boardArray.concat(bombArray);
+        boardArray.sort(() => Math.random() - 0.5);
+        boardArray.sort(() => Math.random() - 0.5); // shuffled twice because the first shuffle was not even
 
         emojiBtn.innerHTML = '🙂';
         flagsLeft.innerHTML = bombAmount;
 
-        for (let i = 0; i < width * width; i++) {
+        for (let i = 0; i < width * height; i++) {
             const cell = document.createElement('cell');
             cell.setAttribute('id', i);
-            cell.classList.add(shuffledArray[i]);
+            cell.classList.add(boardArray[i]);
             board.appendChild(cell);
             cells.push(cell);
 
@@ -49,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     for (let j = -1; j <= 1; j++) {
                         let y = parseInt(k / width);
                         let x = parseInt(k % width);
-                        if (x + j >= 0 && x + j < width && y + i >= 0 && y + i < width) {
+                        if (x + j >= 0 && x + j < width && y + i >= 0 && y + i < height) {
                             let cell = document.getElementById((x + j) + (y + i) * width);
                             if (cell.classList.contains('bomb'))
                                 bombCount++;
@@ -102,12 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function floodFill(currentCell) {
+        let y = parseInt(currentCell / width);
+        let x = parseInt(currentCell % width);
         setTimeout(() => {
             for (let i = -1; i <= 1; i++) {
                 for (let j = -1; j <= 1; j++) {
-                    let y = parseInt(currentCell / width);
-                    let x = parseInt(currentCell % width);
-                    if (x + j >= 0 && x + j < width && y + i >= 0 && y + i < width) {
+                    if (x + j >= 0 && x + j < width && y + i >= 0 && y + i < height) {
                         let cell = document.getElementById((x + j) + (y + i) * width);
                         if (!cell.classList.contains('clicked')) {
                             click(cell);
@@ -155,7 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
         isGameOver = true;
         emojiBtn.innerHTML = '😫';
         cells.forEach(cell => {
-            if (cell.classList.contains('bomb')) {
+            if (cell.classList.contains('flag') && cell.classList.contains('bomb')) {
+                cell.innerHTML = '❌';
+            } else if (cell.classList.contains('bomb')) {
                 cell.innerHTML = '💣';
             }
         });
@@ -182,18 +186,21 @@ document.addEventListener('DOMContentLoaded', () => {
         timer.innerHTML = time;
         if (levelSelect.value === 'easy') {
             width = 9;
+            height = 9;
             bombAmount = 10;
-        } else if (levelSelect.value === 'medium') {
+        } else if (levelSelect.value === 'normal') {
             width = 16;
+            height = 16;
             bombAmount = 40;
         } else if (levelSelect.value === 'hard') {
             width = 30;
-            bombAmount = 180;
+            height = 18;
+            bombAmount = 99;
         }
         title.style.width = 25 * width + 15 + 'px';
         top.style.width = 25 * width + 6 + 'px';
         board.style.width = 25 * width + 'px';
-        board.style.height = 25 * width + 'px';
+        board.style.height = 25 * height + 'px';
         board.innerHTML = '';
         cells = [];
         createBoard();
