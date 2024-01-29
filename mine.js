@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isGameOver = false;
     let time = 0;
     let isFirstClick = true;
+    let timerInterval= 0;
 
     function createBoard() {
         let boardArray = Array(width * height - bombAmount).fill('normal');
@@ -169,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
     board.addEventListener('click', () => {
         if (isFirstClick) {
             isFirstClick = false;
-            let timerInterval = setInterval(() => {
+            timerInterval = setInterval(() => {
                 time++;
                 timer.innerHTML = time;
                 if (isGameOver) {
@@ -206,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
         boardArray = [];
         bombArray = [];
         cells = [];
+        clearInterval(timerInterval);
         createBoard();
     });
 });
