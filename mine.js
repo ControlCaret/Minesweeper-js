@@ -71,9 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         if (cell.classList.contains('clicked') || cell.classList.contains('flag'))
             return;
-        if (cell.classList.contains('bomb'))
+        if (cell.classList.contains('bomb')) {
+            cell.classList.add('clicked');
             gameOver();
-        else {
+        } else {
             let bombCount = cell.getAttribute('data');
             if (bombCount != 0) {
                 cell.innerHTML = bombCount;
@@ -155,8 +156,12 @@ document.addEventListener('DOMContentLoaded', () => {
         cells.forEach(cell => {
             if (cell.classList.contains('flag') && cell.classList.contains('bomb')) {
                 cell.innerHTML = '❌';
-            } else if (cell.classList.contains('bomb')) {
+            }
+            if (cell.classList.contains('bomb')) {
                 cell.innerHTML = '💣';
+            }
+            if (cell.classList.contains('bomb') && cell.classList.contains('clicked')) {
+                cell.innerHTML = '💥';
             }
         });
     }
