@@ -121,19 +121,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function addFlag(cell) {
         if (isGameOver)
             return;
-        if (!cell.classList.contains('clicked') && (flags < bombAmount)) {
-            if (!cell.classList.contains('flag')) {
-                cell.classList.add('flag');
-                cell.innerHTML = '🚩';
-                flags++;
-                flagsLeft.innerHTML = bombAmount - flags;
-                checkWin();
-            } else {
-                cell.classList.remove('flag');
-                cell.innerHTML = '';
-                flags--;
-                flagsLeft.innerHTML = bombAmount - flags;
-            }
+        if (!cell.classList.contains('clicked') && !cell.classList.contains('flag') && flags < bombAmount) {
+            cell.classList.add('flag');
+            cell.innerHTML = '🚩';
+            flags++;
+            flagsLeft.innerHTML = bombAmount - flags;
+            checkWin();
+        } else if (cell.classList.contains('flag')) {
+            cell.classList.remove('flag');
+            cell.innerHTML = '';
+            flags--;
+            flagsLeft.innerHTML = bombAmount - flags;
         }
     }
 
